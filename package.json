@@ -1,0 +1,45 @@
+{
+  "name": "github-webhook",
+  "version": "1.0.0",
+  "description": "github-webhook",
+  "engines": {
+    "node": ">=4"
+  },
+  "keywords": [
+    "javascript",
+    "es6",
+    "esnext",
+    "software",
+    "npm"
+  ],
+  "main": "github-webhook.js",
+  "bin": {},
+  "scripts": {
+    "lint": "xo github-webhook.js test.js",
+    "pretest": "npm run lint",
+    "test": "ava"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jansanchez/github-webhook.git"
+  },
+  "author": {
+    "name": "jansanchez",
+    "email": "joejansanchez@gmail.com",
+    "url": "http://frontendlabs.io/author/jansanchez"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jansanchez/github-webhook/issues"
+  },
+  "homepage": "https://github.com/jansanchez/github-webhook#readme",
+  "dependencies": {},
+  "devDependencies": {
+    "ava": "^0.15.2",
+    "watch": "^0.19.1",
+    "xo": "^0.16.0"
+  },
+  "xo": {
+    "esnext": true
+  }
+}
