@@ -16,6 +16,7 @@
   "bin": {},
   "scripts": {
     "lint": "xo github-webhook.js test.js",
+    "babel": "babel-node ./app/index.js --presets es2015",
     "pretest": "npm run lint",
     "test": "ava"
   },
@@ -36,10 +37,18 @@
   "dependencies": {},
   "devDependencies": {
     "ava": "^0.15.2",
+    "babel-cli": "^6.10.1",
+    "babel-preset-es2015": "^6.9.0",
     "watch": "^0.19.1",
     "xo": "^0.16.0"
   },
   "xo": {
-    "esnext": true
+    "esnext": true,
+    "rules": {
+      "babel/new-cap": 0,
+      "no-undef": 0,
+      "indent": 0,
+      "no-unused-vars": 0
+    }
   }
 }
