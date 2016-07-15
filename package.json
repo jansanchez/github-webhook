@@ -35,8 +35,7 @@
   },
   "homepage": "https://github.com/jansanchez/github-webhook#readme",
   "dependencies": {
-    "async": "^2.0.0",
-    "request": "^2.73.0"
+    "async": "^2.0.0"
   },
   "devDependencies": {
     "ava": "^0.15.2",

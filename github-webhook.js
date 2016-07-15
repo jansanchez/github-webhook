@@ -2,7 +2,6 @@
 'use strict';
 
 var async = require('async');
-var request = require('request');
 
 return function (context, req, res) {
 	var body = '';
