@@ -4,21 +4,22 @@
 var async = require('async');
 
 return function (context, req, res) {
-	var body = '';
+	var payload;
 
 	async.series([
 		function (callback) {
+			var body = '';
 			// Collect payload of GitHub web hook
 			req.on('data', function (chunk) {
 				body += chunk;
 			});
 			req.on('end', function () {
 				try {
-					body = JSON.parse(body);
-					if (!body || typeof body !== 'object') {
+					payload = JSON.parse(body);
+					if (!payload || typeof payload !== 'object') {
 						throw new Error('Unexpected web hook payload.');
 					}
-					if (!body.repository || typeof body.repository.full_name !== 'string') {
+					if (!payload.repository || typeof payload.repository.full_name !== 'string') {
 						throw new Error('Repository not identified in web hook payload.');
 					}
 				} catch (err) {
