@@ -16,7 +16,7 @@
   "bin": {},
   "scripts": {
     "lint": "xo github-webhook.js test.js",
-    "babel": "babel-node ./app/index.js --presets es2015",
+    "babel": "babel-node ./github-webhook.js --presets es2015",
     "pretest": "npm run lint",
     "test": "ava"
   },
@@ -34,7 +34,10 @@
     "url": "https://github.com/jansanchez/github-webhook/issues"
   },
   "homepage": "https://github.com/jansanchez/github-webhook#readme",
-  "dependencies": {},
+  "dependencies": {
+    "async": "^2.0.0",
+    "request": "^2.73.0"
+  },
   "devDependencies": {
     "ava": "^0.15.2",
     "babel-cli": "^6.10.1",
