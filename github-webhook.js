@@ -1,43 +1,29 @@
-#!/usr/bin/env node
-'use strict';
+var request = require('request');
+var app = require('express')();
+var bodyParser = require('body-parser');
+var port = 3000;
 
-var async = require('async');
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 
-return function (context, req, res) {
-	var payload;
+app.get('/', (req, res) => {
+  var json = JSON.stringify({
+   "from": "webhook"
+ });
+ res.writeHead(200, {"Content-Type": "application/json"});
+ res.end(json);
+});
 
-	async.series([
-		function (callback) {
-			var body = '';
-			// Collect payload of GitHub web hook
-			req.on('data', function (chunk) {
-				body += chunk;
-			});
-			req.on('end', function () {
-				try {
-					payload = JSON.parse(body);
-					if (!payload || typeof payload !== 'object') {
-						throw new Error('Unexpected web hook payload.');
-					}
-					if (!payload.repository || typeof payload.repository.full_name !== 'string') {
-						throw new Error('Repository not identified in web hook payload.');
-					}
-				} catch (err) {
-					return callback(err);
-				}
-				return callback();
-			});
-			req.on('error', callback);
-		}
-	], function (error) {
-		try {
-			if (error) {
-				console.log('ERROR', error);
-				res.writeHead(500);
-				res.end(error.toString());
-			}
-		} catch (err) {
-			// ignore
-		}
-	});
-};
+app.post('/', function(req, res) {
+  var json = JSON.stringify(req.body);
+  var url = 'https://frontendlabs.io/api/';
+  console.log(json);
+  request.post({url: url, form: json}, function(err, httpResponse, body){
+    res.writeHead(200, {"Content-Type": "application/json"});
+    res.end(JSON.stringify(body));
+  });
+});
+
+app.listen(port, function(){
+  console.log('Server running in localhost: ' + port);
+});
